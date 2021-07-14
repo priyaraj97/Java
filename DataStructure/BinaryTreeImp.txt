@@ -1,0 +1,147 @@
+importjava.util.Scanner;
+publicclassBinaryTreeImpl
+{
+	privateBtNode root;
+	publicbooleanisEmpty() {
+	return (this.root == null);
+	    }
+	publicBtNodegetRoot() {
+	returnthis.root;
+	    }
+	publicvoidinsert(int data) {
+	System.out.print("[input: "+data+"]");
+	if(root == null) {
+	this.root = newBtNode(data);
+	System.out.println(" -> inserted: "+data);
+	return;
+	        }
+	insertNode(this.root, data);
+	System.out.print(" -> inserted: "+data);
+	System.out.println();
+	    }
+	privateBtNodeinsertNode(BtNode root, int data) {
+	BtNodetmpNode = null;
+	System.out.print(" ->"+root.getData());
+	if(root.getData() >= data) 
+	        {
+	System.out.print(" [L]");
+	if(root.getLeft() == null) 
+	            {
+	root.setLeft(newBtNode(data));
+	returnroot.getLeft();
+	            } 
+	
+else{
+	tmpNode = root.getLeft();
+	            }
+	        } 
+	else
+	        {
+	System.out.print(" [R]");
+	if(root.getRight() == null) 
+	            {
+	root.setRight(newBtNode(data));
+	returnroot.getRight();
+	            } 
+	else
+	            {
+	tmpNode = root.getRight();
+	            }
+	        }
+	returninsertNode(tmpNode, data);
+	    }
+	publicvoiddelete(int data) {
+	deleteNode(this.root, data);
+	    }
+	privateBtNodedeleteNode(BtNoderoot,int data) {
+	if(root == null) 
+		return root;
+	
+	if(data <root.getData()) 
+	        {
+	root.setLeft(deleteNode(root.getLeft(), data));
+	        } 
+	elseif(data >root.getData()) 
+	        {
+	root.setRight(deleteNode(root.getRight(), data));
+	        } 
+	else
+	        {
+	            // node with no leaf nodes
+	if(root.getLeft() == null&&root.getRight() == null) 
+	            {
+	System.out.println("deleting "+data);
+	returnnull;
+	            } 
+	elseif(root.getLeft() == null) 
+	            {
+	                // node with one node (no left node)
+	System.out.println("deleting "+data);
+	returnroot.getRight();
+	            } 
+	elseif(root.getRight() == null) 
+	            {
+	                // node with one node (no right node)
+	System.out.println("deleting "+data);
+	returnroot.getLeft();
+	            } 
+	else
+	            {
+	                // nodes with two nodes
+	                // search for min number in right sub tree
+	intminValue = minValue(root.getRight());
+	root.setData(minValue);
+	root.setRight(deleteNode(root.getRight(), minValue));
+	System.out.println("deleting "+data);
+	            }
+	        }
+	return root;
+	    }
+	privateintminValue(BtNode node) {
+	if(node.getLeft() != null) {
+	returnminValue(node.getLeft());
+	        }
+	returnnode.getData();
+	    }
+	publicvoidinOrderTraversal() {
+	doInOrder(this.root);
+	    }
+	privatevoiddoInOrder(BtNode root) {
+	if(root == null) 
+	return;
+	doInOrder(root.getLeft());
+	System.out.print(root.getData()+" ");
+	doInOrder(root.getRight());
+	    }
+	publicstaticvoidmain(String a[]) {
+	       Scanner s=new Scanner(System.in);
+	intupdate,del;
+	BinaryTreeImpl bt = newBinaryTreeImpl();
+	bt.insert(8);
+	bt.insert(10);
+	bt.insert(14);
+	bt.insert(3);
+	bt.insert(6);
+	bt.insert(7);
+	bt.insert(1);
+	bt.insert(4);
+	bt.insert(13);
+	System.out.println();
+	System.out.println("In Order Traversal");
+	bst.inOrderTraversal();
+	System.out.println();	
+	bt.delete(13);
+	bt.inOrderTraversal();
+	System.out.println();
+	System.out.println("Enter the number to delete");
+	        del=s.nextInt();
+	bt.delete(del);
+	bt.inOrderTraversal();
+	System.out.println();
+	System.out.println("Enter the number to update a tree");
+	        update=s.nextInt();
+	bt.insert(update);
+
+
+	    }
+}
