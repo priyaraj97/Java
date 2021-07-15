@@ -46,12 +46,14 @@ class BinomialHeap {
 			{
 				if (temp1.degree < temp2.degree) 
 				{
+					if ((temp1.sibling == null))
+					{
 					BinomialHeapNode tmp = temp2;
 					temp2 = temp2.sibling;
 					tmp.sibling = temp1.sibling;
 					temp1.sibling = tmp;
 					temp1 = tmp.sibling;
-				}
+					} 
 				else 
 					{
 						temp1 = temp1.sibling;
@@ -69,7 +71,7 @@ class BinomialHeap {
 					} 
 					else
 					{
-		}}}
+		}}}}
 		if (temp1 == null) {
 			temp1 = Nodes;
 			while (temp1.sibling != null) {
