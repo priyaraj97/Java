@@ -2,10 +2,16 @@ package inheritance;
 
 public class Android extends Mobiles 
 { 
-	String Androidversion;
+	String AndroidName;
 	int Androidversion1;
 	int man_year;
 	
+	public String getAndroidName() {
+		return AndroidName;
+	}
+	public void setAndroidName(String androidName) {
+		AndroidName = androidName;
+	}
 	public int getMan_year() {
 		return man_year;
 	}
@@ -19,19 +25,13 @@ public class Android extends Mobiles
 		Androidversion1 = androidversion1;
 	}
 	
-	public String getAndroidversion() {
-		return Androidversion;
-		
-	}
-	public void setAndroidversion(String androidversion) {
-		Androidversion = androidversion;
-		}
 	
 	
 	
-	public void Androidversion(String Androidversion,int Androidversion1)
+	
+	public void Androidversion(String AndroidName,int Androidversion1)
 	{
-	this.Androidversion=Androidversion;
+	this.AndroidName=AndroidName;
 	this.Androidversion1=Androidversion1;
 	
 	}
